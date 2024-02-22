@@ -1,16 +1,21 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import Spinner from './components/spinner';
 
-function App() {
+const App: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  if (loading) return <Spinner loading={loading} />
+
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-    </>
-  );
+    <div className='text-2xl'>Loaded...</div>
+  )
 }
 
 export default App;
